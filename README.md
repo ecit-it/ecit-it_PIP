@@ -23,7 +23,7 @@ In this page, can post information and comment. If you want to apply for jobs, p
 The administrator of this system information is stored in the database, the application cannot add, modify, and delete. In the blog home page login enter the administrator user name, password and validation code,
 Enter the administrator page operation. Administrators with all of the user's permissions, ordinary also can delete the post information, comments, pictures and modify their own information, management of the ordinary
 The user information and public announcement.
-====================================================================================================================
+
 大学生岗位实习平台安装与配置使用说明书
 配置源程序
 1．安装下载的appserv-win32-2.5.10.exe软件（最好安装在D盘根目录下，安装过程中密码设为8748(设为其他请自行修改数据库连接
@@ -45,3 +45,8 @@ The user information and public announcement.
 　　本系统的管理员信息是保存在数据库中的，程序中不可添加、修改及删除。在博客首页登录处输入管理员用户名、密码及验证码，
 　　进入管理员操作页面。管理员具有普通用户的所有权限，还可以删除帖子信息、评论信息、图片及修改自己的相关信息，管理普通
 　　用户信息及公告信息。
+License
+=======================================================================================================================
+MIT licensed
+
+Copyright (C) 2012 huidaoli 、ecit-it.com, http://ecit-it.com               http://huidaoli.web-164.com
