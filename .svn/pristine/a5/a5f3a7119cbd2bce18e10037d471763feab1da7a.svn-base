@@ -1,0 +1,197 @@
+<?php session_start(); include "conn/conn.php";  include "center_check_login.php";
+include_once("qq.php"); ?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="css/stylepage.css" rel="stylesheet">
+<title>用户申请单管理</title>
+</head>
+<div class=menuskin id=popmenu 
+      onmouseover="clearhidemenu();highlightmenu(event,'on')" 
+      onmouseout="highlightmenu(event,'off');dynamichide(event)"
+	  style="Z-index:100;position:absolute;"></div>
+<script src=" JS/menu.JS"></script>
+<script language="javascript">
+function check(form){
+if (document.myform.sel_key.value==""){
+	alert("请输入查询条件!");myform.sel_key.focus();return false;
+}
+}
+</script>
+<body> 
+<TABLE width="760" cellPadding=0 cellSpacing=0 style="WIDTH: 755px" align="center"> 
+  <TBODY> 
+    <TR> 
+      <TD width="758" colSpan=3 style="VERTICAL-ALIGN: bottom; HEIGHT: 6px"> <TABLE 
+      style="BACKGROUND-IMAGE: url( images/mypageimages/f_head.jpg); WIDTH: 760px; HEIGHT: 154px" 
+      cellSpacing=0 cellPadding=0> 
+          <TBODY> 
+            <TR> 
+              <TD height="110" colspan="6" 
+          style="VERTICAL-ALIGN: text-top; WIDTH: 80px; HEIGHT: 115px; TEXT-ALIGN: right"><a href="index.php"><img src="images/index1.jpg" width="77" height="25" alt="返回主页"></a></TD> 
+            </TR> 
+            <TR> 
+              <TD height="29" align="center" valign="middle">
+			  <TABLE style="WIDTH: 580px" VERTICAL-ALIGN: text-top; cellSpacing=0 cellPadding=0 align="center">
+                  <TBODY>
+                    <TR align="center" valign="middle">
+					 <TD style="WIDTH: 170px; COLOR: red;">欢迎您:&nbsp;<?php echo $_SESSION[unc]; ?>&nbsp;&nbsp;</TD>
+                      <TD style="WIDTH: 80px; COLOR: red;"><SPAN  style="FONT-SIZE: 9pt; COLOR: #cc0033"></SPAN> <a href="center_index.php">会员首页</a></TD>
+                      <TD style="WIDTH: 80px; COLOR: red;"><A href="center_RegPro.php"> </A><a  onmouseover=showmenu(event,productmenu) onmouseout=delayhidemenu() class='navlink' style="CURSOR:hand" >文章管理</a></TD>
+                      <TD style="WIDTH: 80px; COLOR: red;"><A href="center_RegPro.php"> </A><a  onmouseover=showmenu(event,Honourmenu) onmouseout=delayhidemenu() class='navlink' style="CURSOR:hand">图片管理</a></TD>
+                      <TD style="WIDTH: 90px; COLOR: red;"><A href="center_RegPro.php"> </A><a  onmouseover=showmenu(event,myfriend) onmouseout=delayhidemenu() class='navlink' style="CURSOR:hand" >朋友圈管理</a>  </TD>
+                       
+					   <TD style="WIDTH: 80px; COLOR: red;"><a  onmouseover=showmenu(event,myuser) onmouseout=delayhidemenu() class='navlink' style="CURSOR:hand" > 申请单管理</a></TD> 
+  					 
+					  <TD style="WIDTH: 80px; COLOR: red;"><A href="center_RegPro.php"> </A><a href="logout.php">退出登录</a></TD>
+                    </TR>
+                  </TBODY>
+              </TABLE>			  </TD> 
+            </TR>
+          </TBODY> 
+        </TABLE></TD> 
+    </TR> 
+    <TR> 
+      <TD colSpan=3 valign="baseline" style="BACKGROUND-IMAGE: url( images/mypageimages/bg.jpg); VERTICAL-ALIGN: middle; HEIGHT: 450px; TEXT-ALIGN: center"><table width="78%" height="100%"  border="0" cellpadding="0" cellspacing="0"> 
+          <tr> 
+            <td height="243" align="center"><table width="595" height="243" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="595" height="241" align="center" valign="top" bgcolor="#FFFFFF"><table width="582" height="18" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="582" height="16">&nbsp;</td>
+      </tr>
+    </table>
+      <table width="584" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="584" height="25" bgcolor="#FFEDBF"><div align="center" style="color: #6A0202">申请单查询</div></td>
+        </tr>
+        <tr>
+          <td height="50" bgcolor="#555555"><table width="588" height="56" border="0" align="center" cellpadding="0" cellspacing="1">
+              <tr>
+                <td width="586" height="52" bgcolor="#FFFFFF">
+                  <table width="577" height="50" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <script language="javascript">
+			     function chkinput3(form)
+				 {
+				   if((form.username.value=="")&&(form.ddh.value==""))
+				    {
+				      alert("请输入申请人姓名或申请单号");
+					  form.username.select();
+					  return(false);
+				    }
+				   return(true);
+				    
+				 }
+			   </script>
+                    <form name="form3" method="post" action="finddd.php" onSubmit="return chkinput3( this)">
+                      <tr>
+                        <td width="577" height="25"><div align="center">申请人姓名:
+                                <input name="username" type="text" class="inputcss" id="username" style="background-color:#e8f4ff " onMouseOver="this.style.backgroundColor='#ffffff'" onMouseOut="this.style.backgroundColor='#e8f4ff'" size="25">
+                      申请单号:
+                      <input type="text" name="ddh" size="25" class="inputcss" style="background-color:#e8f4ff " onMouseOver="this.style.backgroundColor='#ffffff'" onMouseOut="this.style.backgroundColor='#e8f4ff'">
+                        </div></td>
+                      </tr>
+                      <tr>
+                        <td height="25">
+                          <div align="center">
+                            <input type="hidden" value="show_find" name="show_find">
+                            <input name="submit2" type="submit" class="buttoncss" value="查 找">
+                        </div></td>
+                      </tr>
+                    </form>
+                </table></td>
+              </tr>
+          </table></td>
+        </tr>
+      </table>
+      <table width="579" height="18" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="579" height="16">&nbsp;</td>
+        </tr>
+      </table>
+      <?php
+	    if($_POST[show_find]!="")
+		 {
+	      $username=trim($_POST[username]);
+		  $ddh=trim($_POST[ddh]);
+		  if($username=="")
+		   {
+		       $sql=mysql_query("select * from tb_dingdan where dingdanhao='".$ddh."'",$conn);
+		   }
+		  elseif($ddh=="")
+		  {
+		      $sql=mysql_query("select * from tb_dingdan where xiadanren='".$username."'",$conn);
+		   }
+		  else
+		  {
+		      $sql=mysql_query("select * from tb_dingdan where xiadanren='".$username."'and dingdanhao='".$ddh."'",$conn);
+		  }
+		  $info=mysql_fetch_array($sql);
+		  if($info==false)
+		   {
+		      echo "<div algin='center'>对不起,没有查找到该申请单!</div>";    
+		   }
+		   else
+		   {
+	  ?>
+      <table width="595" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="595" height="25" bgcolor="#FFEDBF"><div align="center" style="color: #6E0202">查询结果</div></td>
+        </tr>
+        <tr>
+          <td height="50" bgcolor="#555555"><table width="596" height="48" border="0" align="center" cellpadding="0" cellspacing="1">
+              <tr>
+                <td width="73" height="25" bgcolor="#FFFFFF"><div align="center">申请单号</div></td>
+                <td width="63" bgcolor="#FFFFFF"><div align="center">申请用户</div></td>
+                <td width="69" bgcolor="#FFFFFF"><div align="center">真名</div></td>
+                <td width="128" bgcolor="#FFFFFF"><div align="center">学校</div></td>
+                <td width="108" bgcolor="#FFFFFF"><div align="center">城市</div></td>
+                <td width="227" bgcolor="#FFFFFF"><div align="center">申请单状态</div></td>
+              </tr>
+              <?php
+			
+			  do
+			  {
+			
+			?>
+              <tr>
+                <td height="18" bgcolor="#FFFFFF"><div align="center"><?php echo $info[dingdanhao];?></div></td>
+                <td height="18" bgcolor="#FFFFFF"><div align="center"><?php echo $info[xiadanren];?></div></td>
+                <td height="18" bgcolor="#FFFFFF"><div align="center"><?php echo $info[shouhuoren];?></div></td>
+              
+                <td height="18" bgcolor="#FFFFFF"><div align="center"><?php echo $info[zfff];?></div></td>
+                <td height="18" bgcolor="#FFFFFF"><div align="center"><?php echo $info[shff];?></div></td>
+                <td height="18" bgcolor="#FFFFFF"><div align="center"><?php echo $info[zt];?></div></td>
+              </tr>
+              <?php
+			   }while($info=mysql_fetch_array($sql));
+			?>
+          </table></td>
+        </tr>
+      </table>
+    <?php
+		   }
+		  }
+		?></td>
+  </tr>
+</table></td> 
+          </tr> 
+        </table></TD> 
+    </TR>  
+  </TBODY> 
+</TABLE> 
+<table width="757"  border="0" align="center" cellpadding="0" cellspacing="0">
+<tr width="757" align="center">
+<td width="757" align="center">&nbsp;</td>
+</tr>
+
+<tr>
+<td width="757" align="center"><font color="#FF0000"><a href="index.php"><font color="#0000FF">网站主页</font></a>|<a href="morebccd.php"><font color="#0000FF">岗位浏览</font></a>|<a href="morebccd.php"><font color="#0000FF">岗位申请</font></a>|<a href="bbs_index.php"><font color="#0000FF">论坛</font></a>|<a href="jszc.php?jszc=客户反馈"><font color="#0000FF">客户反馈</font></a>|<a href="jszc.php"><font color="#0000FF">帮助中心</font></a></font></td></tr>
+<tr>
+<tr>
+<td width="757" align="center">Copyright &copy; 2012-2020 &nbsp;中国.南京凯之渡信息技术有限公司版权所有</td></tr>
+<tr>
+<td width="757" align="center">&nbsp;</td></tr>
+</table>
+</body>
+</html>
